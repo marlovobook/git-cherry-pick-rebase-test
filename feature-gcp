@@ -1,0 +1,12 @@
+import pandas as pd
+from google.cloud import bigquery
+client = bigquery.Client()
+sql = """
+SELECT *
+FROM datacafeplayground.total_supply_chain.table_product_demand
+ORDER BY
+  date,shop_id;
+"""
+df = client.query(sql).to_dataframe()
+
+df.head()
